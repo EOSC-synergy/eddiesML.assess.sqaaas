@@ -1,0 +1,64 @@
+config:
+  credentials: []
+  project_repos:
+    github.com/EOSC-synergy/sqaaas-tooling:
+      branch: main
+      repo: https://github.com/EOSC-synergy/sqaaas-tooling
+    github.com/HPCI-Lab/eddiesML:
+      branch: main
+      repo: https://github.com/HPCI-Lab/eddiesML
+environment:
+  JPL_DOCKERFORCEBUILD: enabled
+  JPL_KEEPGOING: enabled
+sqa_criteria:
+  QC.Acc:
+    repos:
+      github.com/HPCI-Lab/eddiesML git:
+        commands:
+        - /usr/bin/env sh .sqa/script.woozy-scarlet-eleuth.sh
+        container: qc.acc_hilly-champagne-gibbon
+  QC.Doc:
+    repos:
+      github.com/HPCI-Lab/eddiesML find_doc_files.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.hilly-smalt-wildebeest.sh
+        container: qc.doc_surly-cerulean-horse
+      github.com/HPCI-Lab/eddiesML git:
+        commands:
+        - /usr/bin/env sh .sqa/script.thirsty-razzmatazz-abyssinian.sh
+        container: qc.doc_nerdy-lilac-kiwi
+      github.com/HPCI-Lab/eddiesML markdownlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.sleazy-bistre-beaver.sh
+        container: qc.doc_boozy-aquamarine-beaver
+  QC.Lic:
+    repos:
+      github.com/HPCI-Lab/eddiesML licensee:
+        commands:
+        - /usr/bin/env sh .sqa/script.scummy-asparagus-bonobo.sh
+        container: qc.lic_flimsy-wheat-lionfish
+  QC.Sec:
+    repos:
+      github.com/HPCI-Lab/eddiesML bandit:
+        commands:
+        - /usr/bin/env sh .sqa/script.pasty-amber-binturong.sh
+        container: qc.sec_ugly-carmine-fowl
+  QC.Sty:
+    repos:
+      github.com/HPCI-Lab/eddiesML flake8:
+        commands:
+        - /usr/bin/env sh .sqa/script.gamy-magenta-dogfish.sh
+        container: qc.sty_blurry-beige-mandrill
+  QC.Uni:
+    repos:
+      github.com/HPCI-Lab/eddiesML pytest:
+        commands:
+        - /usr/bin/env sh .sqa/script.greasy-peach-harrier.sh
+        container: qc.uni_randy-green-kangaroo
+  QC.Ver:
+    repos:
+      github.com/HPCI-Lab/eddiesML get_git_tags.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.pretty-emerald-forest.sh
+        container: qc.ver_cloudy-gamboge-worm
+timeout: 5400
